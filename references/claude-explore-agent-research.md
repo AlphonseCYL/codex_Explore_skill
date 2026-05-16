@@ -1,24 +1,24 @@
 # Claude Code Explore Agent Research
 
-Sources checked on 2026-05-15:
+来源核对时间：2026-05-15
 
 - Anthropic Claude Code subagents docs: https://code.claude.com/docs/en/sub-agents
 - Anthropic Claude Code common workflows: https://code.claude.com/docs/en/tutorials
 - Anthropic blog, "How and when to use subagents in Claude Code": https://claude.com/blog/subagents-in-claude-code
 
-Useful design points:
+有用的设计要点：
 
-- Subagents run in separate context windows and return only relevant results to the main conversation.
-- Claude Code positions Explore agents as fast, read-only code search agents for file discovery, code search, and codebase exploration.
-- Anthropic recommends subagents for research-heavy work, high-volume tool output, independent parallel investigations, fresh reviews, and phased workflows.
-- A strong signal for delegation is a task that needs about 10 or more files, or about three or more independent pieces of work.
-- Effective prompts define scope, request parallel execution only for independent tasks, and specify the desired output format.
-- Custom agent routing depends heavily on the description/trigger field, so skill metadata should state the exact situations that should activate the workflow.
-- The common workflow docs specifically recommend delegating large codebase exploration so only findings return to the main context.
+- 子代理运行在独立的上下文窗口中，只把相关结果返回给主对话。
+- Claude Code 把 Explore agent 定位为快速、只读的代码搜索代理，用于文件发现、代码搜索和代码库探索。
+- Anthropic 建议在研究密集型工作、大量工具输出、彼此独立的并行调查、重新评审和分阶段工作流中使用子代理。
+- 一个强烈的委派信号是：任务需要大约 10 个或更多文件，或者大约 3 个或更多彼此独立的工作块。
+- 有效的提示词会定义范围，只在任务彼此独立时才要求并行执行，并明确期望的输出格式。
+- 自定义代理路由很依赖 description/trigger 字段，所以 skill 元数据应明确写出哪些情形会触发这个工作流。
+- 常见工作流文档明确建议把大规模代码库探索交给子代理，这样主上下文只接收发现结果。
 
-Implications for this skill:
+对这个 skill 的启示：
 
-- The main agent should not perform broad file reads first.
-- Explorer prompts should be narrow, read-only, and output-shaped.
-- The main handoff artifact should be a concise key-files table with reasons and confidence.
-- The main agent should verify only the smallest necessary set of files before editing.
+- 主代理不应该先做大范围文件读取。
+- Explorer 提示词应该窄、只读，并且输出形状明确。
+- 主交接产物应该是一张简洁的 key-files 表，包含理由和置信度。
+- 主代理在编辑前只应验证最小必要文件集。

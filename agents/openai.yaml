@@ -1,4 +1,4 @@
 interface:
   display_name: "Explore"
-  short_description: "Delegate large code reading to explorer agents"
-  default_prompt: "Use $explore to map this codebase before making changes."
+  short_description: "将大范围代码阅读交给 explorer agents"
+  default_prompt: "Use $explore to map this codebase before making changes. 请用中文总结发现，但保留英文格式字段。"
